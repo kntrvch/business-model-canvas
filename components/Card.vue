@@ -14,7 +14,7 @@
                             <input v-model="card.title" class="form-control" placeholder="Card title" />
                         </div>
                         <div class="form-group">
-                            <div class="form-control airnote">asd</div>
+                            <div class="airnote">asd</div>
                         </div>
                     </div>
                 </div>
