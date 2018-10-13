@@ -11,7 +11,7 @@
                     </a>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <input v-model="card.title" class="form-control" placeholder="Card title" />
+                            <input v-model="card.title" class="card-title-input form-control" :disabled="!active" placeholder="Card title" />
                         </div>
                         <div class="form-group">
                             <div class="airnote">asd</div>
@@ -32,8 +32,25 @@ module.exports = {
     name: 'Card', 
     props: ['card'], 
     mounted: function () {
+        var scrollOptions = {
+            distance: '20px', 
+            height: '100%'
+        }
+        $(this.$el).find('.card-body').slimScroll(scrollOptions);
+        $('.grid-stack').on('gsresizestop', function(event, elem) {
+            $(elem).find('.card-body').slimScroll(scrollOptions);
+        });
         $('.airnote').summernote({
-            airMode: true
+            airMode: true, 
+            popover: {
+                air: [
+                    ['color', ['color']],
+                    ['fontsize', ['fontsize']],
+                    ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                ]
+            },
         });
         $('[data-toggle="tooltip"]').tooltip();
     },

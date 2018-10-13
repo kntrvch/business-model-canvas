@@ -1,6 +1,6 @@
 <template>
 <div class="project">
-    <button @click="addCard" class="btn"><i class="material-icons">add</i></button>
+    <button @click="addCard" class="btn m-3"><i class="material-icons">add</i> Add card</button>
     <div class="grid-stack">
 
         <card v-for="card of cards" v-bind:key="card.id" :card="card" ></card>

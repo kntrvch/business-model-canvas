@@ -31,6 +31,7 @@ body {
     width: 85%;
     background: linear-gradient(90deg, #fff 20px, transparent 1%) center, linear-gradient(#fff 20px, transparent 1%) center, #ddd;
     background-size: 22px 22px;
+    overflow: auto;
   }
 
 .grid-stack-item-content {
@@ -67,4 +68,30 @@ body {
 .active .airnote+.note-editor:hover, 
 .active .airnote+.note-editor:focus {
   border: 1px solid #ced4da;
+}
+
+.card-title-input {
+  text-align: center;
+  font-weight: 700;
+}
+
+.form-control:disabled, 
+.form-control[readonly] {
+  background-color: #fff;
+}
+
+.card {
+  border: none;
+}
+ .status-bar {
+   margin: 15px;
+ }
+
+.slimScrollBar {
+  background: #ddd !important;
+  margin-top: 15px;
+}
+
+.slimScrollDiv {
+  padding-bottom: 30px;
 }
