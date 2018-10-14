@@ -102,7 +102,7 @@ body {
 }
 
 #canvasModal {
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 #canvasModal .modal-dialog {
@@ -125,4 +125,8 @@ body {
 
 .grid-stack-item-content:not(.active) .card {
   cursor: move;
+}
+
+.grid-stack-item.ui-resizable-autohide .grid-stack-item-content:not(.active) .btn-edit {
+  visibility: hidden;
 }
