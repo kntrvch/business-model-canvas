@@ -2,6 +2,7 @@
     <div class="grid-stack-item">
         <div class="grid-stack-item-content" v-bind:class="{ 'active': active }">
             <div class="card">
+                
                 <div class="card-body">
                     <a v-if="!active" @click="editCard()" class="btn btn-link btn-edit float-right text-body" href="#" data-toggle="tooltip" data-original-title="Edit">
                         <i class="material-icons">edit</i>
@@ -33,8 +34,8 @@ module.exports = {
     props: ['card'], 
     mounted: function () {
         var scrollOptions = {
-            distance: '20px', 
-            height: '100%'
+            distance: '10px', 
+            height: '90%'
         }
         $(this.$el).find('.card-body').slimScroll(scrollOptions);
         $('.grid-stack').on('change', (event, elem) => {
@@ -56,6 +57,7 @@ module.exports = {
                 ]
             },
         });
+        $('[data-toggle="tooltip"]').tooltip();
     },
     methods: {
         editCard() {
@@ -74,9 +76,7 @@ module.exports = {
                 disabled: false
             });
             $('[data-toggle="tooltip"]').tooltip('hide');
-        }, 
-        disableAll() {
-
+            this.$emit('transform');
         }
     }
 }
