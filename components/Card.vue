@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-stack-item" data-gs-width="3" data-gs-height="3" data-gs-auto-position="true">
+    <div class="grid-stack-item" data-gs-auto-position="false">
         <div class="grid-stack-item-content" v-bind:class="{ 'active': active }">
             <div class="card">
                 <div class="card-body">
@@ -11,10 +11,10 @@
                     </a>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <input v-model="card.title" class="card-title-input form-control" :disabled="!active" placeholder="Card title" />
+                            <input v-model="card.title" class="card-title-input form-control" :disabled="!active" placeholder="[Empty]" />
                         </div>
                         <div class="form-group">
-                            <div class="airnote">asd</div>
+                            <div class="card-content-input airnote">[Empty]</div>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,10 @@ module.exports = {
             height: '100%'
         }
         $(this.$el).find('.card-body').slimScroll(scrollOptions);
-        $('.grid-stack').on('gsresizestop', function(event, elem) {
+        $('.grid-stack').on('change', (event, elem) => {
+            this.$emit('transform');
+        });
+        $('.grid-stack').on('gsresizestop', (event, elem) => {
             $(elem).find('.card-body').slimScroll(scrollOptions);
         });
         $('.airnote').summernote({
@@ -52,7 +55,6 @@ module.exports = {
                 ]
             },
         });
-        $('[data-toggle="tooltip"]').tooltip();
     },
     methods: {
         editCard() {

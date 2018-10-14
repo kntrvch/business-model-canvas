@@ -2,8 +2,8 @@ Vue.filter('date', time => moment(time).format('DD/MM/YY, HH:mm'));
 
 new Vue({
 
-  el: '#business-canvas',
-
+  el: '#app',
+  store,
   data () {
     return {
       content: 'This is a project.',
@@ -27,6 +27,9 @@ new Vue({
       return this.projects.slice()
       .sort((a, b) => a.created - b.created)
       .sort((a, b) => (a.favorite === b.favorite) ? 0 : a.favorite ? -1 : 1)
+    }, 
+    cards () {
+      return this.$store.state.cards
     }
   },
 
