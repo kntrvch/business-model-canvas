@@ -10,7 +10,8 @@
             :data-gs-x="card.x"
             :data-gs-y="card.y"
             :data-gs-width="card.width"
-            :data-gs-height="card.height"></card>
+            :data-gs-height="card.height"
+            :data-gs-auto-position="card.auto_position"></card>
         </div>    
     </div>    
 </div>
@@ -54,7 +55,8 @@ module.exports = {
                 x: 0, 
                 y: 0, 
                 width: 3, 
-                height: 3
+                height: 3, 
+                auto_position: true
             };
 
             let gridStack = this.grid.data("gridstack");
@@ -86,7 +88,8 @@ module.exports = {
                     height: node.height,
                     id: node.id,
                     title: $(node.el).find('.card-title-input').val(),
-                    content: $(node.el).find('.note-editable').html()
+                    content: $(node.el).find('.note-editable').html(), 
+                    auto_position: false
                 });
             });
 

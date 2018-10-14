@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-stack-item" data-gs-auto-position="false">
+    <div class="grid-stack-item">
         <div class="grid-stack-item-content" v-bind:class="{ 'active': active }">
             <div class="card">
                 <div class="card-body">

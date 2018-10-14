@@ -71,6 +71,7 @@ new Vue({
     removeAllProjects () {
       if (confirm('Delete all projects?')) {
         this.projects.splice(0, this.projects.length);
+        localStorage.removeItem('cards');
         this.saveProjects();
       }
     },
