@@ -11,7 +11,8 @@
             :data-gs-y="card.y"
             :data-gs-width="card.width"
             :data-gs-height="card.height"
-            :data-gs-auto-position="card.auto_position"></card>
+            :data-gs-auto-position="card.auto_position"
+            @remove-card="removeCard(card.id)"></card>
         </div>    
     </div>    
 </div>
@@ -22,6 +23,7 @@ module.exports = {
         return {
             cards: this.$store.getters.getData, 
             grid: null, 
+            selectedId: this.$store.getters.getData[0] || null,
             serializedCards: []
         }
     },
@@ -45,7 +47,42 @@ module.exports = {
 
         
     },
+     computed: {
+        selectedCard() {
+            return this.cards.find(card => card.id === this.selectedId);
+        }, 
+        newId: {
+            set: function(id) {
+                this.selectedId = id;
+            }, 
+            get: function () {
+                return this.selectedId
+            },
+        }
+    },
     methods: {
+        removeCard(id) {
+            console.log('removing ', id);
+            console.log(this.cards);
+            if (confirm('Are you sure to delete this card?')) {
+                this.newId = id;
+                const index = this.cards.indexOf(this.selectedCard);
+                console.log(this.selectedCard);
+                console.log('wut1');
+                if (index !== -1) {
+                    console.log('wut2');
+                    this.cards.splice(index, 1);
+                    console.log(this.cards);
+                    let gridStack = this.grid.data("gridstack");
+
+                    //gridStack.destroy(false);
+                    gridStack.container.removeData("gridstack");
+                    this.serializeCards();
+                    console.log(this.cards);
+                }
+            }
+        },
+
         addCard () {
             const time = Date.now();
             const card = {

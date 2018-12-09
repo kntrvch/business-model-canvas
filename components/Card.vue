@@ -10,6 +10,9 @@
                     <a v-if="active" @click="leaveCard()" class="btn btn-link btn-edit float-right text-success" href="#" data-toggle="tooltip" data-original-title="Save">
                         <i class="material-icons">done</i>
                     </a>
+                    <a v-if="!active" @click="removeCard()" class="btn btn-link btn-edit float-right text-body" href="#" data-toggle="tooltip" data-original-title="Remove">
+                        <i class="material-icons">delete</i>
+                    </a>
                     <div class="form-horizontal">
                         <div class="form-group">
                             <input v-model="card.title" class="card-title-input form-control" :disabled="!active" placeholder="[Empty]" />
@@ -77,7 +80,12 @@ module.exports = {
             });
             $('[data-toggle="tooltip"]').tooltip('hide');
             this.$emit('transform');
-        }
+        }, 
+
+        removeCard() {
+            console.log('remove me');
+            this.$emit('remove-card');
+        }, 
     }
 }
 </script>
