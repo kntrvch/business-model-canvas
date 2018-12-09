@@ -14,7 +14,6 @@ new Vue({
 
   computed: {
     projectPreview () {
-      // Markdown rendered to HTML
       return this.selectedProject ? marked(this.selectedProject.content) : '';
     },
     addButtonTitle () {
@@ -52,7 +51,7 @@ new Vue({
       const project = {
         id: String(time),
         title: 'New project ' + (this.projects.length + 1),
-        content: '**Hi!** This projectbook is using [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting!',
+        content: 'Lorem ipsum...',
         created: time,
         favorite: false
       };
@@ -88,7 +87,7 @@ new Vue({
   },
 
   created () {
-    this.content = localStorage.getItem('content') || 'You can write in **markdown**';
+    this.content = localStorage.getItem('content') || 'You can use the inline WYSIWYG editor';
   }, 
 
   components: {
