@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Projectbook</title>
+  <title>Business Model Canvas</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote-bs4.css" />
@@ -14,7 +14,8 @@
   <script src="https://unpkg.com/vuex"></script>
   <script src="https://unpkg.com/http-vue-loader"></script>
   <script src="https://unpkg.com/jquery@3.3.1"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/marked"></script>
@@ -22,58 +23,71 @@
   <script src="https://unpkg.com/lodash"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote-bs4.min.js"></script>
   <script src="https://unpkg.com/jquery-slimscroll"></script>
-  
-<script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.js'></script>
-<script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
+
+  <script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.js'></script>
+  <script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
   <script src="https://unpkg.com/html2canvas@1.0.0-alpha.12/dist/html2canvas.min.js"></script>
-
-  <div id="app">
-
-    <aside class="side-bar">
-      <div class="toolbar">
-        <button @click="addProject" :title="addButtonTitle" class="btn"><i class="material-icons">add</i> Add project</button>
+  <header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <i class="material-icons mr-2">table_chart</i>
+          <strong>Business Model Canvas</strong>
+        </a>
       </div>
+    </div>
+  </header>
+  <main>
+    <div id="app">
 
-      <ul class="nav flex-column projects">
-        <li class="nav-item project" v-for="project of sortedProjects">
-          <a @click="selectProject(project)" :class="{selected: project === selectedProject}" class="nav-link" href="#">
-            <i class="icon material-icons" v-if="project.favorite">star</i>
-            {{project.title}}
-          </a>
-        </li>
-      </ul>
-    </aside>
-
-    <template v-if="selectedProject">
-      <section class="main">
+      <aside class="side-bar p-3">
         <div class="toolbar">
+          <button @click="addProject" :title="addButtonTitle" class="btn"><i class="material-icons">add</i> Add project</button>
+        </div>
 
-          <div class="input-group">
-            <input v-model="selectedProject.title" class="form-control" placeholder="Project title" />
-            <div class="input-group-append" id="button-addon4">
-              <button @click="favoriteProject" class="btn" title="Favorite project"><i class="material-icons">{{
-                  selectedProject.favorite ?
-                  'star' : 'star_border' }}</i></button>
-              <button @click="removeProject" class="btn" title="Remove project"><i class="material-icons">delete_outline</i></button>
-              <button @click="removeAllProjects" class="btn" title="Remove all projects"><i class="material-icons">delete_sweep</i></button>
+        <ul class="nav flex-column projects">
+          <li class="nav-item project" v-for="project of sortedProjects">
+            <a @click="selectProject(project)" :class="{selected: project === selectedProject}" class="nav-link" href="#">
+              <i class="icon material-icons" v-if="project.favorite">star</i>
+              {{project.title}}
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <template v-if="selectedProject">
+        <section class="main">
+          <div class="toolbar">
+
+            <div class="input-group">
+              <input v-model="selectedProject.title" class="form-control" placeholder="Project title" />
+              <div class="input-group-append" id="button-addon4">
+                <button @click="favoriteProject" class="btn" title="Favorite project"><i class="material-icons">{{
+                    selectedProject.favorite ?
+                    'star' : 'star_border' }}</i></button>
+                <button @click="removeProject" class="btn" title="Remove project"><i class="material-icons">delete_outline</i></button>
+                <button @click="removeAllProjects" class="btn" title="Remove all projects"><i class="material-icons">delete_sweep</i></button>
+              </div>
             </div>
           </div>
-        </div>
-        <div id="workspace">
-          <project :id="selectedProject.id"></project>
-        </div>
-        <div class="toolbar status-bar">
+          <div id="workspace">
+            <project :id="selectedProject.id"></project>
+          </div>
+          <div class="toolbar status-bar">
 
-          <span class="date">
-            <span class="label">Created</span>
-            <span class="value">{{ selectedProject.created | date }}</span>
-          </span>
-          </span>
-        </div>
-      </section>
-    </template>
-  </div>
-  <div class="modal fade" id="canvasModal" tabindex="-1" role="dialog" aria-labelledby="canvasModalCenterTitle" aria-hidden="true">
+            <span class="date">
+              <span class="label">Created</span>
+              <span class="value">{{ selectedProject.created | date }}</span>
+            </span>
+            </span>
+          </div>
+        </section>
+      </template>
+    </div>
+    <div class="clearfix"></div>
+  </main>
+  <div class="modal fade" id="canvasModal" tabindex="-1" role="dialog" aria-labelledby="canvasModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -90,7 +104,8 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="serializationModal" tabindex="-1" role="dialog" aria-labelledby="serializationModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="serializationModal" tabindex="-1" role="dialog" aria-labelledby="serializationModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -109,6 +124,11 @@
     </div>
   </div>
 
+  <footer>
+    <div class="text-center p-3 bg-dark text-light">&copy; 2018 kntrvch
+  </footer>
+  </div>
+  </footer>
   <script src="store.js"></script>
   <script src="script.js"></script>
 </body>
