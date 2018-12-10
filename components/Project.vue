@@ -1,7 +1,7 @@
 <template>
 <div class="project">
     <button @click="addCard" class="btn m-3"><i class="material-icons">add</i> Add card</button>
-    <button @click="toCanvas" class="btn m-3"><i class="material-icons">camera_alt</i> Snapshot</button>
+    <button @click="toCanvas" class="btn m-3"><i class="material-icons">camera_alt</i> Snapshot<sup> <small class="text-muted">BETA</small></sup></button>
     <button @click="showExportCode" class="btn m-3"><i class="material-icons">import_export</i> Export</button>
     <div id="business-canvas">
         <div class="grid-stack">
